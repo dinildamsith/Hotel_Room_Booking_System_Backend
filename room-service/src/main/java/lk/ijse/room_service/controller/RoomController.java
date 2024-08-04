@@ -1,6 +1,7 @@
 package lk.ijse.room_service.controller;
 
 import lk.ijse.room_service.dto.RoomDTO;
+import lk.ijse.room_service.entity.RoomEntity;
 import lk.ijse.room_service.enums.RoomType;
 import lk.ijse.room_service.service.RoomServices;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,5 +63,13 @@ public class RoomController {
 
         String res = roomServices.updateRooms(roomId,updateRoomDTO);
         return res;
+    }
+
+
+    @GetMapping
+    @RequestMapping("/search/{searchRoomId}")
+    RoomEntity searchRoom(@PathVariable ("searchRoomId") String searchRoomId){
+        RoomEntity searchRoom = roomServices.searchRooms(searchRoomId);
+        return searchRoom;
     }
 }

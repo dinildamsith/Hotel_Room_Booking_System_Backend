@@ -34,7 +34,12 @@ public class RoomServiceIMPL implements RoomServices {
 
     @Override
     public RoomEntity searchRooms(String roomId) {
-        return null;
+        if (roomRepo.existsById(roomId)){
+            RoomEntity searchRoom = roomRepo.findById(roomId).orElse(null);
+            return searchRoom;
+        }else{
+            return null;
+        }
     }
 
     @Override
