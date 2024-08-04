@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+import java.util.UUID;
 
 @Transactional
 @Service
@@ -26,6 +27,9 @@ public class UserServiceIMPL implements UserServices{
 
     @Override
     public String saveUser(UserDTO userDTO) {
-        return null;
+        UUID uuid = UUID.randomUUID();
+        userDTO.setUserId(String.valueOf(uuid));
+        userRepo.save(dataConvert.userDTOConvertUserEntity(userDTO));
+        return "Saved";
     }
 }
