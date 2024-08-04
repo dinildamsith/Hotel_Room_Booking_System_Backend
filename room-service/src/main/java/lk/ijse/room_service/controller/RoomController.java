@@ -41,4 +41,26 @@ public class RoomController {
         String res = roomServices.saveRooms(roomDTO);
         return res;
     }
+
+
+    @PutMapping
+    @RequestMapping("/update/{updateRoomId}")
+    String updateRoom(@PathVariable ("updateRoomId") String roomId,
+                      @RequestPart("roomPic") String roomPic,
+                      @RequestPart("roomType") String roomType,
+                      @RequestPart("beadCount") String beadCount,
+                      @RequestPart("oneDayPrice") String oneDayPrice
+    ){
+
+        RoomDTO updateRoomDTO = new RoomDTO();
+        updateRoomDTO.setRoomId(Integer.parseInt(roomId));
+        updateRoomDTO.setRoomPic(roomPic);
+        updateRoomDTO.setRoomType(RoomType.valueOf(roomType));
+        updateRoomDTO.setBeadCount(Integer.parseInt(beadCount));
+        updateRoomDTO.setOneDayPrice(Double.parseDouble(oneDayPrice));
+
+
+        String res = roomServices.updateRooms(roomId,updateRoomDTO);
+        return res;
+    }
 }

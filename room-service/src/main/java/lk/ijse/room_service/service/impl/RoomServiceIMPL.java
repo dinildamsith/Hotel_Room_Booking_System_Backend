@@ -39,7 +39,19 @@ public class RoomServiceIMPL implements RoomServices {
 
     @Override
     public String updateRooms(String updateRoomId, RoomDTO roomDTO) {
-        return null;
+
+        if (roomRepo.existsById(updateRoomId)){
+            RoomEntity updateRoomEntity = roomRepo.findById(updateRoomId).orElse(null);
+            updateRoomEntity.setRoomPic(roomDTO.getRoomPic());
+            updateRoomEntity.setRoomType(roomDTO.getRoomType());
+            updateRoomEntity.setBeadCount(roomDTO.getBeadCount());
+            updateRoomEntity.setOneDayPrice(roomDTO.getOneDayPrice());
+
+            roomRepo.save(updateRoomEntity);
+            return "room updated";
+        }else{
+            return "this id have no room";
+        }
     }
 
     @Override
