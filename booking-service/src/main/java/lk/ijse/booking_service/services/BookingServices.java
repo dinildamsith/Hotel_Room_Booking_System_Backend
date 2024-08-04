@@ -4,4 +4,5 @@ import lk.ijse.booking_service.dto.BookingDTO;
 
 public interface BookingServices {
     String roomBooking(BookingDTO bookingDTO);
+    void updateRoomStatusesForExpiredBookings();
 }

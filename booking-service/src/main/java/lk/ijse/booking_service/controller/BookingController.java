@@ -1,5 +1,6 @@
 package lk.ijse.booking_service.controller;
 
+import jakarta.annotation.PostConstruct;
 import lk.ijse.booking_service.dto.BookingDTO;
 import lk.ijse.booking_service.services.BookingServices;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,10 @@ public class BookingController {
         System.out.println("Booking worked...");
     }
 
+    @PostConstruct
+    public void updateRoomStatusesForExpiredBookings(){
+        bookingServices.updateRoomStatusesForExpiredBookings();;
+    }
 
     @PostMapping
     @RequestMapping("/room_booking")

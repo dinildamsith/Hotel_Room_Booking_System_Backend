@@ -10,7 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -56,5 +58,15 @@ public class BookingServiceIMPL implements BookingServices {
 
 
 
+    }
+
+    @Override
+    public void updateRoomStatusesForExpiredBookings() {
+        LocalDate currentDate = LocalDate.now();
+
+        List<BookingEntity> expiredBookings = bookingRepo.findExpiredBookings(currentDate);
+        for (BookingEntity booking : expiredBookings){
+            restTemplate.put("http://localhost:8082/api/v1/room_service/update_status/"+booking.getBookingRoomId()+"/"+"Available","");
+        }
     }
 }
