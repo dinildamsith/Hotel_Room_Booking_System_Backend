@@ -28,7 +28,8 @@ public class RoomController {
                     @RequestPart("roomPic") String roomPic,
                     @RequestPart("roomType") String roomType,
                     @RequestPart("beadCount") String beadCount,
-                    @RequestPart("oneDayPrice") String oneDayPrice
+                    @RequestPart("oneDayPrice") String oneDayPrice,
+                    @RequestPart("roomStatus") String status
                                ){
 
         RoomDTO roomDTO = new RoomDTO();
@@ -37,6 +38,7 @@ public class RoomController {
         roomDTO.setRoomType(RoomType.valueOf(roomType));
         roomDTO.setBeadCount(Integer.parseInt(beadCount));
         roomDTO.setOneDayPrice(Double.parseDouble(oneDayPrice));
+        roomDTO.setRoomStatus(status);
 
 
         String res = roomServices.saveRooms(roomDTO);
@@ -50,7 +52,8 @@ public class RoomController {
                       @RequestPart("roomPic") String roomPic,
                       @RequestPart("roomType") String roomType,
                       @RequestPart("beadCount") String beadCount,
-                      @RequestPart("oneDayPrice") String oneDayPrice
+                      @RequestPart("oneDayPrice") String oneDayPrice,
+                      @RequestPart("roomStatus") String status
     ){
 
         RoomDTO updateRoomDTO = new RoomDTO();
@@ -59,6 +62,7 @@ public class RoomController {
         updateRoomDTO.setRoomType(RoomType.valueOf(roomType));
         updateRoomDTO.setBeadCount(Integer.parseInt(beadCount));
         updateRoomDTO.setOneDayPrice(Double.parseDouble(oneDayPrice));
+        updateRoomDTO.setRoomStatus(status);
 
 
         String res = roomServices.updateRooms(roomId,updateRoomDTO);

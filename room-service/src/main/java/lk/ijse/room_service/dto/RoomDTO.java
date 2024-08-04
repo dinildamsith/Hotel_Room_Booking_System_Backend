@@ -20,5 +20,7 @@ public class RoomDTO implements SuperDTO {
     private RoomType roomType;
     private int beadCount;
     private double oneDayPrice;
+    private String roomStatus;
+
 
 }

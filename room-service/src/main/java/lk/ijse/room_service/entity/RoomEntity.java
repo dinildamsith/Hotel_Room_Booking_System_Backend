@@ -23,5 +23,6 @@ public class RoomEntity implements SuperEntity{
     private RoomType roomType;
     private int beadCount;
     private double oneDayPrice;
+    private String roomStatus;
 
 }
