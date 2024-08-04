@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>lk.ijse</groupId>
-	<artifactId>ticket-service</artifactId>
+	<artifactId>room-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>ticket-service</name>
 	<description>Ticket Service</description>
