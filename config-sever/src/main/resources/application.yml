@@ -1,0 +1,8 @@
+server:
+  port: 8089
+
+spring:
+  application:
+    name: config-sever
+  profiles:
+    active: native
