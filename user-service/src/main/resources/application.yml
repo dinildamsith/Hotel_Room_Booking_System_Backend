@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: user-service
+  config:
+      import: "optional:configserver:http://localhost:8089"
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 1234
+    url: jdbc:mysql://localhost:3306/HighwayTicketSystem?createDatabaseIfNotExist=true
+    hikari:
+      maximum-pool-size: 5
+
+  jpa:
+    generate-ddl: true
+    show-sql: true
+    database-platform: org.hibernate.dialect.MySQLDialect
+    properties:
+      hibernate:
+        format_sql: true
+    hibernate:
+      ddl-auto: update
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+
+
