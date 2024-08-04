@@ -26,10 +26,29 @@ public class UserServiceIMPL implements UserServices{
 
 
     @Override
-    public String saveUser(UserDTO userDTO) {
-        UUID uuid = UUID.randomUUID();
-        userDTO.setUserId(String.valueOf(uuid));
-        userRepo.save(dataConvert.userDTOConvertUserEntity(userDTO));
-        return "Saved";
+    public String signUp(UserDTO userDTO) {
+
+        if (userRepo.existsById(userDTO.getEmail())){
+            return "This Mail Have Already Account";
+        }else {
+            userRepo.save(dataConvert.userDTOConvertUserEntity(userDTO));
+            return "Sign Up Done";
+        }
+
+
+    }
+
+    @Override
+    public String signIn(String email, String password) {
+        if (userRepo.existsById(email)){
+            UserEntity user = userRepo.findById(email).orElse(null);
+            if (user.getPassword().equals(password)){
+                return "Login Success";
+            }else{
+                return "Email or Password Incorrect";
+            }
+        }else{
+            return "Email or Password Incorrect";
+        }
     }
 }

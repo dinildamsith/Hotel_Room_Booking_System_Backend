@@ -21,9 +21,17 @@ public class UserController {
     }
 
     @PostMapping
-    @RequestMapping("/save")
-    String saveUser(@RequestBody UserDTO userDTO){
-        String res = userServices.saveUser(userDTO);
+    @RequestMapping("/signUp")
+    String signUp(@RequestBody UserDTO userDTO){
+        String res = userServices.signUp(userDTO);
+        return res;
+    }
+
+
+    @PostMapping
+    @RequestMapping("/login/{email}/{password}")
+    String signIn(@PathVariable ("email") String email , @PathVariable ("password") String password){
+        String res = userServices.signIn(email, password);
         return res;
     }
 
