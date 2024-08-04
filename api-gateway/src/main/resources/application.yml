@@ -16,6 +16,10 @@ spring:
             uri: lb://user-service
             predicates:
               - Path=/api/v1/user_service/**
+          - id: booking-service
+            uri: lb://booking-service
+            predicates:
+              - Path=/api/v1/booking_service/**
 eureka:
   client:
     register-with-eureka: true
