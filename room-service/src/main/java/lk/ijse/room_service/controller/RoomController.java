@@ -69,11 +69,25 @@ public class RoomController {
         return res;
     }
 
-
     @GetMapping
     @RequestMapping("/search/{searchRoomId}")
     RoomEntity searchRoom(@PathVariable ("searchRoomId") String searchRoomId){
         RoomEntity searchRoom = roomServices.searchRooms(searchRoomId);
         return searchRoom;
+    }
+
+
+    @GetMapping
+    @RequestMapping("/get_status/{roomId}")
+    String getRoomStatus(@PathVariable ("roomId") String roomId){
+        String checkRoomAvailable = roomServices.checkRoomAvailable(roomId);
+        return checkRoomAvailable;
+    }
+
+    @PutMapping
+    @RequestMapping("/update_status/{roomId}/{status}")
+    String updateRoomStatus(@PathVariable ("roomId") String roomId, @PathVariable ("status") String status){
+        String res = roomServices.roomStatusUpdate(roomId, status);
+        return res;
     }
 }

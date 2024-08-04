@@ -60,8 +60,26 @@ public class RoomServiceIMPL implements RoomServices {
     }
 
     @Override
-    public String deleteRoom(String deleteRoomId) {
-        return null;
+    public String checkRoomAvailable(String roomId) {
+        if (roomRepo.existsById(roomId)){
+            String roomStatus = roomRepo.getRoomStatus(roomId);
+            return roomStatus;
+        }else {
+            return "This Id Have No Room";
+        }
+
+    }
+
+    @Override
+    public String roomStatusUpdate(String roomId, String updateStatus) {
+        if (roomRepo.existsById(roomId)){
+            RoomEntity roomEntity = roomRepo.findById(roomId).orElse(null);
+            roomEntity.setRoomStatus(updateStatus);
+            roomRepo.save(roomEntity);
+            return "Status Updated";
+        }else {
+            return "this id have no room";
+        }
     }
 
 }

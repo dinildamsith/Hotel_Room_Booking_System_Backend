@@ -9,6 +9,7 @@ public interface RoomServices {
     String saveRooms(RoomDTO roomDTO);
     RoomEntity searchRooms(String roomId);
     String updateRooms(String updateRoomId,RoomDTO roomDTO);
-    String deleteRoom(String deleteRoomId);
+    String checkRoomAvailable(String roomId);
+    String roomStatusUpdate(String roomId,String updateStatus);
 
 }
