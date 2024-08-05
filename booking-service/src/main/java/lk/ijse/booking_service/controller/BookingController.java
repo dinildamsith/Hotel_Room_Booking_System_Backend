@@ -33,6 +33,7 @@ public class BookingController {
 
     @PostConstruct
     public void updateRoomStatusesForExpiredBookings(){
+        System.out.println("fff");
         bookingServices.updateRoomStatusesForExpiredBookings();;
     }
 

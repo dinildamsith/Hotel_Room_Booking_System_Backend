@@ -15,6 +15,7 @@ public interface BookingRepo extends JpaRepository<BookingEntity,String> {
     @Query("SELECT bookingId FROM booking_details ORDER BY bookingId DESC LIMIT 1")
     Integer getLastBookingId();
 
-    @Query("SELECT b FROM booking_details b WHERE b.bookingEndDate < :currentDate")
-    List<BookingEntity> findExpiredBookings(@Param("currentDate") LocalDate currentDate);
+    @Query("SELECT b FROM booking_details b WHERE b.bookingEndDate <= CURRENT_DATE")
+    List<BookingEntity> findExpiredBookings();
+
 }

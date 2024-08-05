@@ -69,9 +69,9 @@ public class BookingServiceIMPL implements BookingServices {
 
     @Override
     public void updateRoomStatusesForExpiredBookings() {
-        LocalDate currentDate = LocalDate.now();
 
-        List<BookingEntity> expiredBookings = bookingRepo.findExpiredBookings(currentDate);
+
+        List<BookingEntity> expiredBookings = bookingRepo.findExpiredBookings();
         for (BookingEntity booking : expiredBookings){
             restTemplate.put("http://localhost:8082/api/v1/room_service/update_status/"+booking.getBookingRoomId()+"/"+"Available","");
         }
