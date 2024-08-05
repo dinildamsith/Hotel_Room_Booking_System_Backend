@@ -10,6 +10,15 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("api/v1/user_service")
+@CrossOrigin(origins = "http://localhost:5173", methods = {
+        RequestMethod.GET,
+        RequestMethod.POST,
+        RequestMethod.PUT,
+        RequestMethod.DELETE,
+        RequestMethod.PATCH,
+        RequestMethod.OPTIONS,
+
+},allowCredentials = "true")
 public class UserController {
 
     @Autowired
@@ -22,7 +31,16 @@ public class UserController {
 
     @PostMapping
     @RequestMapping("/signUp")
-    String signUp(@RequestBody UserDTO userDTO){
+    String signUp(@RequestPart ("email") String email,
+                  @RequestPart ("contact") String contact,
+                  @RequestPart ("name") String name,
+                  @RequestPart ("password") String password
+                  ){
+        UserDTO userDTO = new UserDTO();
+        userDTO.setEmail(email);
+        userDTO.setContact(contact);
+        userDTO.setName(name);
+        userDTO.setPassword(password);
         String res = userServices.signUp(userDTO);
         return res;
     }
@@ -33,6 +51,13 @@ public class UserController {
     String signIn(@PathVariable ("email") String email , @PathVariable ("password") String password){
         String res = userServices.signIn(email, password);
         return res;
+    }
+
+    @GetMapping
+    @RequestMapping("/user_exits/{mail}")
+    boolean userExitsCheck(@PathVariable ("mail") String mail){
+        boolean b = userServices.userExitsCheck(mail);
+        return b;
     }
 
 }

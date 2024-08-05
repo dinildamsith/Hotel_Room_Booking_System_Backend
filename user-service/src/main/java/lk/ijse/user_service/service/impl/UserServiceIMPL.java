@@ -51,4 +51,13 @@ public class UserServiceIMPL implements UserServices{
             return "Email or Password Incorrect";
         }
     }
+
+    @Override
+    public boolean userExitsCheck(String userMail) {
+        if (userRepo.existsById(userMail)){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }
