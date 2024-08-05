@@ -42,20 +42,24 @@ public class BookingServiceIMPL implements BookingServices {
 
         // Get Room Status
         String roomStatus = restTemplate.getForObject("http://localhost:8082/api/v1/room_service/get_status/" + bookingDTO.getBookingRoomId(), String.class);
+        boolean userExits = restTemplate.getForObject("http://localhost:8082/api/v1/user_service/user_exits/" + bookingDTO.getGetBookingUserMail(), boolean.class);
 
 
-        if (roomStatus.equals("Available")){
-            long totalDays = ChronoUnit.DAYS.between(bookingDTO.getBookingStartDate(), bookingDTO.getBookingEndDate())+1;
-            bookingDTO.setTotalPrice(totalDays*bookingDTO.getBookingRoomOneDayPrice());
-            bookingRepo.save(dataConvert.bookingDTOConvertBookingEntity(bookingDTO));
+        if (userExits){
+            if (roomStatus.equals("Available")){
+                long totalDays = ChronoUnit.DAYS.between(bookingDTO.getBookingStartDate(), bookingDTO.getBookingEndDate())+1;
+                bookingDTO.setTotalPrice(totalDays*bookingDTO.getBookingRoomOneDayPrice());
+                bookingRepo.save(dataConvert.bookingDTOConvertBookingEntity(bookingDTO));
 
-            // Room Book After Room Status Update
-            restTemplate.put("http://localhost:8082/api/v1/room_service/update_status/"+bookingDTO.getBookingRoomId()+"/"+"Unavailable","");
-            return "Booking Success";
+                // Room Book After Room Status Update
+                restTemplate.put("http://localhost:8082/api/v1/room_service/update_status/"+bookingDTO.getBookingRoomId()+"/"+"Unavailable","");
+                return "Booking Success";
+            }else{
+                return "Sorry Sir !!!. This Room Not Available";
+            }
         }else{
-            return "Sorry Sir !!!. This Room Not Available";
+            return " This Email Have No Registered This System";
         }
-
 
 
     }
