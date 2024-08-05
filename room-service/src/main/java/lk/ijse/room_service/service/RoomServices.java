@@ -4,8 +4,10 @@ import lk.ijse.room_service.dto.RoomDTO;
 import lk.ijse.room_service.entity.RoomEntity;
 import org.springframework.http.ResponseEntity;
 
+import java.util.List;
+
 public interface RoomServices {
-    ResponseEntity<?> getAllRooms();
+    List<RoomEntity> getAllRooms();
     String saveRooms(RoomDTO roomDTO);
     RoomEntity searchRooms(String roomId);
     String updateRooms(String updateRoomId,RoomDTO roomDTO);

@@ -10,8 +10,19 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/v1/room_service")
+@CrossOrigin(origins = "http://localhost:5173", methods = {
+        RequestMethod.GET,
+        RequestMethod.POST,
+        RequestMethod.PUT,
+        RequestMethod.DELETE,
+        RequestMethod.PATCH,
+        RequestMethod.OPTIONS,
+
+},allowCredentials = "true")
 public class RoomController {
 
     @Autowired
@@ -89,5 +100,12 @@ public class RoomController {
     String updateRoomStatus(@PathVariable ("roomId") String roomId, @PathVariable ("status") String status){
         String res = roomServices.roomStatusUpdate(roomId, status);
         return res;
+    }
+
+    @GetMapping
+    @RequestMapping("/getAllRooms")
+    List<RoomEntity> getAllRooms(){
+        List<RoomEntity> allRooms = roomServices.getAllRooms();
+        return allRooms;
     }
 }

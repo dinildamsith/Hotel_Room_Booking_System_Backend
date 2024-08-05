@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class RoomServiceIMPL implements RoomServices {
 
@@ -18,8 +20,9 @@ public class RoomServiceIMPL implements RoomServices {
     DataConvert dataConvert;
 
     @Override
-    public ResponseEntity<?> getAllRooms() {
-        return null;
+    public List<RoomEntity> getAllRooms() {
+        List<RoomEntity> allRooms = roomRepo.findAll();
+        return allRooms;
     }
 
     @Override
