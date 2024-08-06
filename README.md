@@ -32,7 +32,7 @@ To get started with the Hello Shoes Management System, follow these steps:
 
 ## Configuration
 
-Configure the application by editing the `config-server` file located in the `resources/ymlfile` directory.
+Configure the application by editing the `user-service/room-service/booking-service`  file located in the `src/main/resources/application.yml` directory.
 
 ```properties
 # Database Configuration
