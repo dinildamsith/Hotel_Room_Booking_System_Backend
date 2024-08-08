@@ -11,8 +11,8 @@
 	<groupId>lk.ijse</groupId>
 	<artifactId>room-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>ticket-service</name>
-	<description>Ticket Service</description>
+	<name>room-service</name>
+	<description>Room Service</description>
 	<url/>
 	<licenses>
 		<license/>
