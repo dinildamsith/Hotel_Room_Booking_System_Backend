@@ -35,7 +35,6 @@ public class BookingController {
     // Run this method every minute
     @Scheduled(fixedRate = 30000) // 30000 milliseconds = 30 seconds
     public void updateRoomStatusesForExpiredBookings(){
-        System.out.println("fff");
         bookingServices.updateRoomStatusesForExpiredBookings();;
     }
 
