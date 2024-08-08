@@ -85,4 +85,10 @@ public class RoomServiceIMPL implements RoomServices {
         }
     }
 
+    @Override
+    public List<RoomEntity> roomSearchFiltering(String roomType, double minPrice, double maxPrice) {
+        List<RoomEntity> roomFiltering = roomRepo.getRoomFiltering(roomType, minPrice, maxPrice);
+        return roomFiltering;
+    }
+
 }

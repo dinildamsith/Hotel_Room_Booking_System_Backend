@@ -13,5 +13,6 @@ public interface RoomServices {
     String updateRooms(String updateRoomId,RoomDTO roomDTO);
     String checkRoomAvailable(String roomId);
     String roomStatusUpdate(String roomId,String updateStatus);
+    List<RoomEntity> roomSearchFiltering(String roomType,double minPrice,double maxPrice);
 
 }

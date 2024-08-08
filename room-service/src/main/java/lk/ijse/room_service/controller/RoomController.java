@@ -108,4 +108,11 @@ public class RoomController {
         List<RoomEntity> allRooms = roomServices.getAllRooms();
         return allRooms;
     }
+
+    @GetMapping
+    @RequestMapping("/filtering_room/{type}/{min}/{max}")
+    List<RoomEntity> getFilteringRooms(@PathVariable ("type") String type, @PathVariable ("min") double min , @PathVariable ("max") double max){
+        List<RoomEntity> filteringRooms = roomServices.roomSearchFiltering(type, min, max);
+        return filteringRooms;
+    }
 }
