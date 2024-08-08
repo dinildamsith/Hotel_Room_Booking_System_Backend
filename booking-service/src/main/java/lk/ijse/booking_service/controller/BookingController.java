@@ -6,6 +6,7 @@ import lk.ijse.booking_service.dto.BookingDTO;
 import lk.ijse.booking_service.services.BookingServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
@@ -31,7 +32,8 @@ public class BookingController {
         System.out.println(id);
     }
 
-    @PostConstruct
+    // Run this method every minute
+    @Scheduled(fixedRate = 30000) // 30000 milliseconds = 30 seconds
     public void updateRoomStatusesForExpiredBookings(){
         System.out.println("fff");
         bookingServices.updateRoomStatusesForExpiredBookings();;
