@@ -60,4 +60,14 @@ public class UserServiceIMPL implements UserServices{
             return false;
         }
     }
+
+    @Override
+    public UserEntity getUserAllDetails(String userMail) {
+        if (userRepo.existsById(userMail)){
+            UserEntity userEntity = userRepo.findById(userMail).orElse(null);
+            return userEntity;
+        }else{
+            return null;
+        }
+    }
 }

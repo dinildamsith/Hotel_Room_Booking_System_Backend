@@ -2,6 +2,7 @@ package lk.ijse.user_service.controller;
 
 
 import lk.ijse.user_service.dto.UserDTO;
+import lk.ijse.user_service.entity.UserEntity;
 import lk.ijse.user_service.service.UserServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -58,6 +59,13 @@ public class UserController {
     boolean userExitsCheck(@PathVariable ("mail") String mail){
         boolean b = userServices.userExitsCheck(mail);
         return b;
+    }
+
+    @GetMapping
+    @RequestMapping("/get_all_details/{mail}")
+    UserEntity getUserAllDetails(@PathVariable ("mail") String mail){
+        UserEntity userAllDetails = userServices.getUserAllDetails(mail);
+        return  userAllDetails;
     }
 
 }

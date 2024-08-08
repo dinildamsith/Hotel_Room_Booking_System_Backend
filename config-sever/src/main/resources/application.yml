@@ -6,3 +6,4 @@ spring:
     name: config-sever
   profiles:
     active: native
+

@@ -28,7 +28,7 @@ public class RoomServiceIMPL implements RoomServices {
     @Override
     public String saveRooms(RoomDTO roomDTO) {
         if (roomRepo.existsById(String.valueOf(roomDTO.getRoomId()))){
-            return "This Id Have Already Room";
+            return "This Id Have Already Room Please Change Id";
         }else{
             roomRepo.save(dataConvert.roomDTOConvertRoomEntity(roomDTO));
             return "Room Saved...";
