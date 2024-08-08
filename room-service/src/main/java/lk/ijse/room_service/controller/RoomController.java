@@ -83,7 +83,7 @@ public class RoomController {
     @GetMapping
     @RequestMapping("/search/{searchRoomId}")
     RoomEntity searchRoom(@PathVariable ("searchRoomId") String searchRoomId){
-        RoomEntity searchRoom = roomServices.searchRooms(searchRoomId);
+        RoomEntity searchRoom = (RoomEntity) roomServices.searchRooms(searchRoomId);
         return searchRoom;
     }
 
