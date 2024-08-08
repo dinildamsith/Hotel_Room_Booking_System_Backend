@@ -1,5 +1,6 @@
 package lk.ijse.booking_service.services.impl;
 
+import jakarta.transaction.Transactional;
 import lk.ijse.booking_service.convert.DataConvert;
 import lk.ijse.booking_service.dao.BookingRepo;
 import lk.ijse.booking_service.dto.BookingDTO;
@@ -16,6 +17,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Service
+@Transactional
 public class BookingServiceIMPL implements BookingServices {
 
     @Autowired

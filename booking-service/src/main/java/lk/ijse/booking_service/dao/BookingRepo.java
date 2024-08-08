@@ -10,7 +10,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Repository
-public interface BookingRepo extends JpaRepository<BookingEntity,String> {
+public interface BookingRepo extends JpaRepository<BookingEntity,Integer> {
 
     @Query("SELECT bookingId FROM booking_details ORDER BY bookingId DESC LIMIT 1")
     Integer getLastBookingId();
