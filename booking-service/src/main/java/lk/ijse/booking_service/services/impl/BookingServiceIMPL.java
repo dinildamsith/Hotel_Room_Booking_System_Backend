@@ -9,6 +9,7 @@ import lk.ijse.booking_service.entity.BookingEntity;
 import lk.ijse.booking_service.services.BookingServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.client.RestTemplate;
 
 import java.time.LocalDate;
@@ -71,11 +72,19 @@ public class BookingServiceIMPL implements BookingServices {
 
     @Override
     public void updateRoomStatusesForExpiredBookings() {
-
-
         List<BookingEntity> expiredBookings = bookingRepo.findExpiredBookings();
-        for (BookingEntity booking : expiredBookings){
-            restTemplate.put("http://localhost:8082/api/v1/room_service/update_status/"+booking.getBookingRoomId()+"/"+"Available","");
+        for (BookingEntity booking : expiredBookings) {
+            try {
+                String url = "http://localhost:8082/api/v1/room_service/update_status/" + booking.getBookingRoomId() + "/Available";
+                restTemplate.put(url, "");
+            } catch (ResourceAccessException e) {
+                System.out.println("error");
+              //  log.error("Failed to update room status for Booking ID: {} - {}", booking.getBookingRoomId(), e.getMessage());
+                // Optionally, you could retry or continue processing other bookings
+            } catch (Exception e) {
+                System.out.println("error");
+               // log.error("Unexpected error occurred while updating room status for Booking ID: {} - {}", booking.getBookingRoomId(), e.getMessage());
+            }
         }
     }
 }

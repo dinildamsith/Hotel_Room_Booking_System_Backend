@@ -6,8 +6,11 @@ import lk.ijse.booking_service.dto.BookingDTO;
 import lk.ijse.booking_service.services.BookingServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.retry.annotation.Backoff;
+import org.springframework.retry.annotation.Retryable;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.HttpServerErrorException;
 
 import java.time.LocalDate;
 
@@ -34,6 +37,14 @@ public class BookingController {
 
     // Run this method every minute
     @Scheduled(fixedRate = 30000) // 30000 milliseconds = 30 seconds
+    @Retryable(
+            value = { HttpServerErrorException.class },
+            maxAttempts = 3,
+            backoff = @Backoff(delay = 5000)
+    )
+    // me @Retryable kiyana eken wene mokakm hari wela me method eka run wena eka fail wunoth aye e method eka try karn kiyan eka
+    //  value = { HttpServerErrorException.class },  mehem dila tiyene  "HttpServerErrorException.class" jatiye Exception ekak awoth aye try karn kiyala
+    //   maxAttempts = 3,  meme dila tiyene method run eka fail wunam ki park try karna one kiyalad
     public void updateRoomStatusesForExpiredBookings(){
         bookingServices.updateRoomStatusesForExpiredBookings();;
     }
