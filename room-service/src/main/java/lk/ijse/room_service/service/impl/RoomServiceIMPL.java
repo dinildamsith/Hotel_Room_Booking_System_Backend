@@ -31,7 +31,7 @@ public class RoomServiceIMPL implements RoomServices {
             return "This Id Have Already Room Please Change Id";
         }else{
             roomRepo.save(dataConvert.roomDTOConvertRoomEntity(roomDTO));
-            return "Room Saved...";
+            return "Room Save Success...";
         }
     }
 
@@ -56,9 +56,9 @@ public class RoomServiceIMPL implements RoomServices {
             updateRoomEntity.setOneDayPrice(roomDTO.getOneDayPrice());
 
             roomRepo.save(updateRoomEntity);
-            return "room updated";
+            return "Room Update Success...";
         }else{
-            return "this id have no room";
+            return "This Id have no room";
         }
     }
 
@@ -81,7 +81,7 @@ public class RoomServiceIMPL implements RoomServices {
             roomRepo.save(roomEntity);
             return "Status Updated";
         }else {
-            return "this id have no room";
+            return "This id have no room";
         }
     }
 
