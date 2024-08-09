@@ -57,10 +57,7 @@ public class BookingServiceIMPL implements BookingServices {
 
                 // Room Book After Room Status Update
                 restTemplate.put("http://localhost:8082/api/v1/room_service/update_status/"+bookingDTO.getBookingRoomId()+"/"+"Unavailable","");
-                return "Booking Success\n" +
-                        "Your Booking ID: " + bookingDTO.getBookingId() + "\n" +
-                        "You booked room Id: " + bookingDTO.getBookingRoomId() +"\n"+
-                        "You Book room price"+ bookingDTO.getBookingRoomOneDayPrice();
+                return "Booking Success";
             }else{
                 return "Sorry Sir !!!. This Room Not Available";
             }
