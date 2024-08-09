@@ -30,6 +30,7 @@ public class BookingServiceIMPL implements BookingServices {
     @Autowired
     RestTemplate restTemplate;
 
+
     @Override
     public String roomBooking(BookingDTO bookingDTO) {
 
@@ -78,12 +79,9 @@ public class BookingServiceIMPL implements BookingServices {
                 String url = "http://localhost:8082/api/v1/room_service/update_status/" + booking.getBookingRoomId() + "/Available";
                 restTemplate.put(url, "");
             } catch (ResourceAccessException e) {
-                System.out.println("error");
-              //  log.error("Failed to update room status for Booking ID: {} - {}", booking.getBookingRoomId(), e.getMessage());
-                // Optionally, you could retry or continue processing other bookings
+                System.out.println("Handled Exception");
             } catch (Exception e) {
-                System.out.println("error");
-               // log.error("Unexpected error occurred while updating room status for Booking ID: {} - {}", booking.getBookingRoomId(), e.getMessage());
+                System.out.println("");
             }
         }
     }
